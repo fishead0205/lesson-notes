@@ -2,6 +2,8 @@
 
 Personal study notes for **CS146S: The Modern Software Developer**, published as a simple static website.
 
+Live site: https://fishead0205.github.io/lesson-notes/
+
 ## Project Files
 
 - `index.html`: main notes page (for GitHub Pages)
@@ -39,6 +41,10 @@ git push -u origin main
 Your notes will be available at:
 
 `https://<your-username>.github.io/lesson-notes/`
+
+For this repo:
+
+`https://fishead0205.github.io/lesson-notes/`
 
 ## Update Notes Later
 
