@@ -15,14 +15,14 @@ Open `index.html` directly in your browser.
 
 ## Publish to GitHub (one-time setup)
 
-1. Create a new empty GitHub repository, for example: `cs146s-notes`.
+1. Create a new empty GitHub repository, for example: `lesson-notes`.
 2. In this folder, run:
 
 ```bash
 git add .
 git commit -m "Initial notes site"
 git branch -M main
-git remote add origin https://github.com/<your-username>/cs146s-notes.git
+git remote add origin https://github.com/<your-username>/lesson-notes.git
 git push -u origin main
 ```
 
@@ -38,7 +38,7 @@ git push -u origin main
 
 Your notes will be available at:
 
-`https://<your-username>.github.io/cs146s-notes/`
+`https://<your-username>.github.io/lesson-notes/`
 
 ## Update Notes Later
 
