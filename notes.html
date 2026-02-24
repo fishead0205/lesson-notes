@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CS146S Notes | The Modern Software Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f9f4;
+      --panel: #ffffff;
+      --ink: #1a1f16;
+      --muted: #5d6657;
+      --line: #dbe4d5;
+      --accent: #1f7a53;
+      --accent-soft: #e6f3ec;
+      --shadow: 0 20px 50px rgba(23, 35, 19, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 10%, #e6f0e0 0%, transparent 35%),
+        radial-gradient(circle at 88% 90%, #e5f5ec 0%, transparent 40%),
+        var(--bg);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      width: min(980px, calc(100% - 2rem));
+      margin: 2.5rem auto 4rem;
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .hero,
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(160deg, #c3e7d4 0%, #f1faf4 100%);
+      top: -80px;
+      right: -60px;
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .kicker {
+      margin: 0;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    h1 {
+      margin: 0.4rem 0 0.6rem;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      line-height: 1.15;
+    }
+
+    .meta {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .links {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .link-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .link-chain-label {
+      margin: 0;
+      color: #4a5b4e;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.52rem 0.78rem;
+      border-radius: 999px;
+      border: 1px solid #b8d8c6;
+      background: var(--accent-soft);
+      color: #15563a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: transform 140ms ease, box-shadow 140ms ease;
+    }
+
+    .chip:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(31, 122, 83, 0.15);
+    }
+
+    .chip.level-1 {
+      border-color: #90c8ab;
+      background: #ddf0e4;
+      color: #104a30;
+    }
+
+    .chip.level-2 {
+      border-color: #b8d8c6;
+      background: #ecf7f1;
+      color: #16583c;
+    }
+
+    .chip.level-3 {
+      border-color: #d4e4da;
+      background: #f6fbf8;
+      color: #2b5a43;
+    }
+
+    .chain-arrow {
+      color: #4c705c;
+      font-weight: 800;
+      font-size: 0.92rem;
+      line-height: 1;
+      padding: 0 0.1rem;
+    }
+
+    .panel {
+      padding: 1.25rem 1.35rem;
+    }
+
+    h2 {
+      margin: 0 0 0.8rem;
+      font-size: 1.15rem;
+    }
+
+    h3 {
+      margin: 1rem 0 0.5rem;
+      font-size: 1rem;
+    }
+
+    ul {
+      margin: 0.25rem 0 0.7rem 1.1rem;
+      padding: 0;
+    }
+
+    li {
+      margin: 0.23rem 0;
+    }
+
+    .note {
+      margin-top: 0.8rem;
+      border-left: 4px solid #9fd2b8;
+      background: #f7fcf9;
+      border-radius: 12px;
+      padding: 0.7rem 0.85rem;
+      color: #2f4c3f;
+      font-size: 0.93rem;
+    }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.4rem;
+    }
+
+    .step {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.44rem 0.72rem;
+      border: 1px solid #c9d8cd;
+      border-radius: 999px;
+      background: #f8fbf7;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #2a3a2e;
+    }
+
+    .viz-grid {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .shot {
+      background: #fbfdfb;
+      border: 1px solid #dbe4d5;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .shot img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .cap {
+      margin: 0;
+      padding: 0.52rem 0.7rem 0.64rem;
+      color: #445349;
+      font-size: 0.85rem;
+    }
+
+    .tech-term {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dashed #2c7d57;
+      cursor: help;
+      font-weight: 700;
+      color: #184f36;
+      outline: none;
+    }
+
+    .tech-term::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 10px);
+      transform: translateX(-50%) translateY(6px);
+      width: min(280px, 80vw);
+      background: #173426;
+      color: #f3f7f4;
+      border: 1px solid #2e6f4f;
+      border-radius: 10px;
+      padding: 0.5rem 0.6rem;
+      font-size: 0.78rem;
+      line-height: 1.4;
+      font-weight: 500;
+      box-shadow: 0 12px 26px rgba(8, 20, 13, 0.28);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 130ms ease, transform 130ms ease, visibility 130ms ease;
+      z-index: 20;
+    }
+
+    .tech-term:hover::after,
+    .tech-term:focus-visible::after {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: up 560ms ease forwards;
+    }
+
+    .fade-up:nth-child(2) {
+      animation-delay: 80ms;
+    }
+
+    @keyframes up {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero,
+      .panel {
+        padding: 1rem;
+        border-radius: 14px;
+      }
+
+      .wrap {
+        width: min(100%, calc(100% - 1rem));
+        margin-top: 1rem;
+      }
+
+      .links {
+        gap: 0.45rem;
+      }
+
+      .link-row {
+        align-items: stretch;
+        gap: 0.35rem;
+      }
+
+      .chip {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .chain-arrow {
+        width: 100%;
+        text-align: center;
+      }
+
+      .viz-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero fade-up">
+      <p class="kicker">Course Notes</p>
+      <h1>CS146S: The Modern Software Developer</h1>
+      <p class="meta">Personal notes from lesson review. Last formatted for quick revision.</p>
+      <div class="links">
+        <p class="link-chain-label">Reference hierarchy</p>
+        <div class="link-row" aria-label="Link hierarchy from lesson to sub-reference">
+          <a class="chip level-1" href="https://themodernsoftware.dev/" target="_blank" rel="noopener noreferrer">Lesson Site</a>
+          <span class="chain-arrow" aria-hidden="true">-></span>
+          <a class="chip level-2" href="https://www.youtube.com/watch?v=7xTGNNLPyMI" target="_blank" rel="noopener noreferrer">Deep Dive into LLMs Video</a>
+          <span class="chain-arrow" aria-hidden="true">-></span>
+          <a class="chip level-3" href="https://huggingface.co/spaces/HuggingFaceFW/blogpost-fineweb-v1" target="_blank" rel="noopener noreferrer">FineWeb Pretraining Reference</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel fade-up">
+      <h2>Deep Dive into LLMs</h2>
+      <h3>How pretraining data is prepared</h3>
+      <ul>
+        <li>Start with massive web data sources like <span class="tech-term" tabindex="0" data-tip="Common Crawl is a public archive of web pages used to build large text datasets for AI training.">Common Crawl</span> HTML datasets.</li>
+        <li>Filter aggressively before model training:</li>
+      </ul>
+      <ul>
+        <li>Blocklist known low-quality or unsafe websites.</li>
+        <li>Keep mostly text-only content with strong <span class="tech-term" tabindex="0" data-tip="A quality score is a heuristic rating used to keep clearer, more informative text and drop noisy content.">quality scores</span>.</li>
+        <li>Remove personal or sensitive information.</li>
+        <li>Normalize documents to a clean one-dimensional text stream.</li>
+      </ul>
+
+      <h3>Tokenization / symbol conversion</h3>
+      <ul>
+        <li>Use <span class="tech-term" tabindex="0" data-tip="Byte-level means text is first represented as numbers from 0 to 255 so any character can be encoded consistently.">byte-level representation</span> and grouping to convert text into model-readable symbols.</li>
+        <li>Apply a <span class="tech-term" tabindex="0" data-tip="Byte Pair Encoding (BPE) repeatedly merges the most frequent neighboring symbols to form useful tokens and shorten sequences.">Byte Pair Encoding (BPE)</span>-style process to build a compact vocabulary.</li>
+        <li>Iteratively merge frequent pairs to reduce sequence length and form reusable <span class="tech-term" tabindex="0" data-tip="A token is a chunk of text (word, subword, or symbol) that the model reads as one unit.">token</span> groups.</li>
+      </ul>
+
+      <p class="note">
+        Quick memory cue: data quality and filtering are as important as model architecture.
+      </p>
+
+      <h3>Text Diagram (same meaning)</h3>
+      <div class="flow" aria-label="Pretraining and tokenization flow">
+        <span class="step">Raw Web Pages</span>
+        <span class="step">Filtering</span>
+        <span class="step">Clean Text</span>
+        <span class="step">Bits (0/1)</span>
+        <span class="step">Bytes (0-255)</span>
+        <span class="step">BPE Tokens</span>
+        <span class="step">Train <span class="tech-term" tabindex="0" data-tip="LLM stands for Large Language Model: a neural network trained on huge text corpora to predict and generate language.">LLM</span></span>
+      </div>
+
+      <h3>Lesson Screenshots</h3>
+      <div class="viz-grid">
+        <figure class="shot">
+          <img src="./assets/word/media/image2.png" alt="Pretraining pipeline and text extraction screenshot from Deep Dive into LLMs" />
+          <figcaption class="cap">Pretraining pipeline + extracting plain text from raw web pages.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="./assets/word/media/image3.png" alt="Binary 0 and 1 representation screenshot from Deep Dive into LLMs" />
+          <figcaption class="cap">Text represented as bits (0/1) before byte grouping.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="./assets/word/media/image1.png" alt="Combined pretraining and tokenization demo screenshot" />
+          <figcaption class="cap">Combined demo view: pretraining context beside numeric representation.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

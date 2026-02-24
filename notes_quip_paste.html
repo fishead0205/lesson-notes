@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CS146S Notes (Quip Paste)</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; line-height: 1.5; margin: 24px; color: #1f2937; }
+    h1, h2, h3 { margin: 0.7em 0 0.35em; }
+    .chain { padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; background: #f9fafb; }
+    .pill { display: inline-block; padding: 4px 8px; border: 1px solid #9ca3af; border-radius: 999px; margin: 2px 4px 2px 0; font-size: 13px; }
+    .img-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 8px; }
+    img { max-width: 100%; height: auto; border: 1px solid #d1d5db; border-radius: 8px; }
+    .caption { margin-top: 4px; color: #4b5563; font-size: 14px; }
+    .term { font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>CS146S: The Modern Software Developer</h1>
+
+  <h2>Reference Hierarchy</h2>
+  <div class="chain">
+    <a href="https://themodernsoftware.dev/" class="pill">Lesson Site</a>
+    ->
+    <a href="https://www.youtube.com/watch?v=7xTGNNLPyMI" class="pill">Deep Dive into LLMs Video</a>
+    ->
+    <a href="https://huggingface.co/spaces/HuggingFaceFW/blogpost-fineweb-v1" class="pill">FineWeb Pretraining Reference</a>
+  </div>
+
+  <h2>Deep Dive into LLMs</h2>
+  <h3>How pretraining data is prepared</h3>
+  <ul>
+    <li>Start with large web datasets like <span class="term">Common Crawl</span>.</li>
+    <li>Filtering steps: blocklist bad sites, keep high-quality text, remove personal data, normalize text.</li>
+  </ul>
+
+  <h3>Tokenization / Symbol Conversion</h3>
+  <ul>
+    <li><span class="term">Byte-level representation</span>: encode text as bytes (0-255).</li>
+    <li><span class="term">Byte Pair Encoding (BPE)</span>: merge frequent symbol pairs to form useful tokens.</li>
+    <li><span class="term">Token</span>: a chunk of text the model reads as one unit.</li>
+    <li><span class="term">LLM</span>: Large Language Model trained on huge text corpora.</li>
+  </ul>
+
+  <h3>Flow (same meaning)</h3>
+  <p>Raw Web Pages -> Filtering -> Clean Text -> Bits (0/1) -> Bytes (0-255) -> BPE Tokens -> Train LLM</p>
+
+  <h3>Screenshots</h3>
+  <div class="img-grid">
+    <div>
+      <img src="./assets/word/media/image2.png" alt="Pretraining pipeline screenshot" />
+      <div class="caption">Pretraining pipeline and text extraction.</div>
+    </div>
+    <div>
+      <img src="./assets/word/media/image3.png" alt="Bits screenshot" />
+      <div class="caption">Text represented as bits (0/1).</div>
+    </div>
+    <div>
+      <img src="./assets/word/media/image1.png" alt="Combined screenshot" />
+      <div class="caption">Combined pretraining + numeric representation view.</div>
+    </div>
+  </div>
+</body>
+</html>
